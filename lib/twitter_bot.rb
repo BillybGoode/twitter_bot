@@ -62,12 +62,12 @@ end
 def like_and_follow
     streaming_client = streaming_twitter
     user_client = login_twitter
-    topics = ["#bonjour_monde"]
-    client.filter(track: topics) do |tweet|
-        client.fav tweet
-        client.follow tweet.user
+ 
+    topics = ["coffee", "tea"]
+    streaming_client.filter(:track => topics.join(",")) do |tweet|
+        puts tweet.text
     end
-
+    
     # topics = ["#bonjour_monde"]
     # streaming_client.filter(:track => topics.join(",")) do |object_topic|
     #     puts object_topic.text
