@@ -63,31 +63,30 @@ def like_and_follow
     streaming_client = streaming_twitter
     user_client = login_twitter
  
-    topics = ["coffee", "tea"]
-    streaming_client.filter(:track => topics.join(",")) do |tweet|
-        puts tweet.text
-    end
-    
-    # topics = ["#bonjour_monde"]
-    # streaming_client.filter(:track => topics.join(",")) do |object_topic|
-    #     puts object_topic.text
-    #     binding.pry
-
-    #     user_client.fav object_topic.user
-        
-    #     print "\n"
-    #     print "Voici les détails de tweet.user : "
-    #     puts object_topic.user
-    #     print "\n"
-    #     print "Voici les followers de tweet.user : "
-    #     puts object_topic.followers
-    #     # print "\n"
-    #     # print "Voici la carte bleue de tweet.user : "
-    #     # puts tweet.credit_card
-    #     binding.pry
-    #     user_client.follow object_topic.user
+    # topics = ["sourdough", ""]
+    # streaming_client.filter(:track => topics.join(",")) do |tweet|
+    #     puts tweet.text
     # end
-end
+    
+    topics = ["#bonjour_monde", ""]
+    streaming_client.filter(:track => topics.join(",")) do |object_topic|
+        puts object_topic.text
+        
+        # binding.pry
 
+        user_client.fav object_topic
+        user_client.follow object_topic.user
+        
+        # print "\n"
+        # print "Voici les détails de tweet.user : "
+        # puts object_topic.user
+        # print "\n"
+        # print "Voici les followers de tweet.user : "
+        # puts object_topic.followers
+        # # print "\n"
+        # # print "Voici la carte bleue de tweet.user : "
+        # # puts tweet.credit_card
+    end
+end
 
 like_and_follow
